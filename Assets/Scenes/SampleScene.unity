@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 15775072}
   m_Layer: 0
   m_Name: Table
-  m_TagString: Untagged
+  m_TagString: Table
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,6 +376,8 @@ GameObject:
   - component: {fileID: 100323861}
   - component: {fileID: 100323862}
   - component: {fileID: 100323863}
+  - component: {fileID: 100323865}
+  - component: {fileID: 100323864}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -454,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100323856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.53, y: 1.087, z: -0.995}
+  m_LocalPosition: {x: -0.443, y: 1.087, z: -0.856}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -647,6 +649,123 @@ MonoBehaviour:
   resetPos: {fileID: 1482527827}
   dragConst: 0
   magnesConst: 0
+--- !u!82 &100323864
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100323856}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.632
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &100323865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100323856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82573867d8d6edd49a35841ea812ba2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  racketHitSound:
+  - {fileID: 8300000, guid: acf7e89567ce559429132bcbe3530726, type: 3}
+  - {fileID: 8300000, guid: 82e4e1109ebcb804ea4e466e07f366f1, type: 3}
+  - {fileID: 8300000, guid: 49ec089b6d3f7f9489cb6a54bed977cf, type: 3}
+  tableHitSound:
+  - {fileID: 8300000, guid: f7cd34f8e0d9b2d4c896983ff15dd77e, type: 3}
+  - {fileID: 8300000, guid: 0e98f97a1859d0b4fac4d39a916c72f7, type: 3}
+  - {fileID: 8300000, guid: cd974cf3f33c7ba42bc7ec10fcb46aa8, type: 3}
+  audioSource: {fileID: 100323864}
 --- !u!54 &103293045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -944,38 +1063,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!1 &209956459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3412649390972202448, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
-  m_PrefabInstance: {fileID: 1315636374}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &209956462 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6688015753839463788, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
-  m_PrefabInstance: {fileID: 1315636374}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209956459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &209956463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209956459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d576addf3d83f894b8b957f8c7fb5497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pingPongBall: {fileID: 100323856}
-  leftHandInteractor: {fileID: 209956462}
-  leftHandButtonAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  ballGrabInteractable: {fileID: 0}
 --- !u!1 &210054437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,7 +2195,7 @@ GameObject:
   - component: {fileID: 1203538423}
   m_Layer: 0
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2595,7 +2682,7 @@ GameObject:
   - component: {fileID: 1382272286}
   m_Layer: 0
   m_Name: Ceiling
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2895,7 +2982,7 @@ Transform:
   m_GameObject: {fileID: 1497974652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.502, y: 0.984, z: 1.931}
-  m_LocalScale: {x: 0.31045607, y: 0.8016377, z: -0.282027}
+  m_LocalScale: {x: 0.31045607, y: 0.8016377, z: 0.282027}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3222,7 +3309,7 @@ GameObject:
   - component: {fileID: 1868243641}
   m_Layer: 0
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3360,7 +3447,7 @@ GameObject:
   - component: {fileID: 2000970315}
   m_Layer: 0
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3457,7 +3544,7 @@ GameObject:
   - component: {fileID: 2063389863}
   m_Layer: 0
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3556,7 +3643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172668647389806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.264, y: 1.028, z: -1.021}
+  m_LocalPosition: {x: -0.168, y: 0.896, z: -1.021}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -23,6 +23,11 @@ public class Ball : MonoBehaviour
         {
             rigid.velocity = rigid.velocity.normalized * maxSpeed;
         }
+
+        if(transform.position.y < -5)
+        {
+            ResetBall();
+        }
     }
 
     private void FixedUpdate()
@@ -84,14 +89,26 @@ public class Ball : MonoBehaviour
         {
             // 현재 위치에서 공의 진행방향으로 Raycast
             // 마지막 Parameter : Ray의 길이는 제한적이어야 하므로 한 프레임동안 움직인 공의 거리 계산
-            if (Physics.Raycast(transform.position, (preBallPos - transform.position), out hit, Vector3.Distance(preBallPos, transform.position)))
+            if (Physics.Raycast(transform.position, (preBallPos - transform.position).normalized, out hit, Vector3.Distance(preBallPos, transform.position)))
             {
                 // 라켓에 맞으면
                 if (hit.transform.gameObject.tag == "Racket")
                 {
                     // 공을 쳐서 보내기
+                    //Vector3 hitDir = (preBallPos - transform.position).normalized; // 공의 진행 방향
+                    //rigid.AddForce(hitDir * power, ForceMode.Force);
+
+                    // 라켓의 속도
+                    Rigidbody racketRigid = hit.transform.GetComponent<Rigidbody>();
+                    Vector3 racketVelocity = racketRigid.velocity;
+
+                    // 공의 진행방향
                     Vector3 hitDir = (preBallPos - transform.position).normalized; // 공의 진행 방향
-                    rigid.AddForce(hitDir * power, ForceMode.Force);
+
+                    // 공에 가할 힘(라켓의 속도와 공의 진행 방향)
+                    Vector3 hitForce = (racketVelocity + hitDir) * power;
+
+                    rigid.AddForce(hitForce, ForceMode.Impulse);
                 }
             }
         }
