@@ -13,7 +13,6 @@ public class SoundManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, clips.Length);
         AudioClip randomClip = clips[randomIndex];
-        Debug.Log($"{randomClip.name} Àç»ý");
 
         audioSource.clip = randomClip;
         audioSource.Play();
@@ -36,6 +35,4 @@ public class SoundManager : MonoBehaviour
             PlayAudio(dropSound);
         }
     }
-
-
 }

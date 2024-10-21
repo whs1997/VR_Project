@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.HID;
 public class Ball : MonoBehaviour
 {
     [SerializeField] Rigidbody rigid;
-    [SerializeField] float power = 2f;
     [SerializeField] float maxSpeed;
 
     [SerializeField] Transform resetPos;
@@ -14,23 +13,17 @@ public class Ball : MonoBehaviour
     [SerializeField] float dragConst = 0.005f;
     [SerializeField] float magnusConst = 0.005f;
 
-    private Vector3 preBallPos;
-    private RaycastHit hit;
-
     private void Update()
     {
-        if(rigid.velocity.magnitude > maxSpeed) // 공이 너무빨라지지않게 속도 제어
+        if(rigid.velocity.magnitude > maxSpeed) // 공이 너무빨라지지않게 최대속도 제어
         {
             rigid.velocity = rigid.velocity.normalized * maxSpeed;
         }
 
-        if(transform.position.y < -5)
+        if(transform.position.y < -5) // 가끔 공이 바닥을 뚫고 내려가면 리셋
         {
             ResetBall();
-        }
-
-        RaycastBall();
-        
+        }        
     }
 
     private void FixedUpdate()
@@ -41,18 +34,6 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // 탁구채와 충돌하면
-        /*
-        if (collision.gameObject.tag == "Racket")
-        {
-            Vector3 collisionDir = collision.contacts[0].normal; // 충돌한 방향
-            float impactSpeed = collision.relativeVelocity.magnitude; // 충돌 속도
-
-            Vector3 impactForce = -collisionDir * impactSpeed * power; // 충돌한 반대 방향으로 힘을 가함
-
-            rigid.AddForce(impactForce, ForceMode.Force);
-        }
-        */
         if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Net")
         {
             ResetBall(); // 네트나 바닥에 닿으면 공 리셋
@@ -84,37 +65,5 @@ public class Ball : MonoBehaviour
         Vector3 magnusForce = magnusConst * Vector3.Cross(rigid.velocity, rigid.angularVelocity);
 
         return magnusForce;
-    }
-
-    private void RaycastBall()
-    {
-        if (preBallPos != null)
-        {
-            // 현재 위치에서 공의 진행방향으로 Raycast
-            // 마지막 Parameter : Ray의 길이는 제한적이어야 하므로 한 프레임동안 움직인 공의 거리 계산
-            if (Physics.Raycast(transform.position, (preBallPos - transform.position).normalized, out hit, Vector3.Distance(preBallPos, transform.position)))
-            {
-                // 라켓에 맞으면
-                if (hit.transform.gameObject.tag == "Racket")
-                {
-                    // 공을 쳐서 보내기
-                    //Vector3 hitDir = (preBallPos - transform.position).normalized; // 공의 진행 방향
-                    //rigid.AddForce(hitDir * power, ForceMode.Force);
-
-                    // 라켓의 속도
-                    Rigidbody racketRigid = hit.transform.GetComponent<Rigidbody>();
-                    Vector3 racketVelocity = racketRigid.velocity;
-
-                    // 공의 진행방향
-                    Vector3 hitDir = (preBallPos - transform.position).normalized; // 공의 진행 방향
-
-                    // 공에 가할 힘(라켓의 속도와 공의 진행 방향)
-                    Vector3 hitForce = (racketVelocity + hitDir) * power;
-
-                    rigid.AddForce(hitForce, ForceMode.Impulse);
-                }
-            }
-        }
-        preBallPos = transform.position;
     }
 }
