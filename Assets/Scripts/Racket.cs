@@ -9,14 +9,17 @@ public class Racket : MonoBehaviour
 {
     [SerializeField] float power = 1f; // 공에 가할 힘
     private Vector3 preBallPos; // 공의 이전프레임의 위치
+
     private RaycastHit hit;
+
+    [SerializeField] Transform resetPos; // 게임 시작할때 라켓의 위치
 
     private void FixedUpdate()
     {
         RaycastBall();
     }
 
-    private void RaycastBall()
+    private void RaycastBall() // 공의 움직임을 raycast로 감지해 받아옴
     {
         if (preBallPos != null)
         {
@@ -43,4 +46,10 @@ public class Racket : MonoBehaviour
         preBallPos = transform.position; // 공의 위치 저장
     }
 
+    public void ResetRacket()
+    {
+        gameObject.SetActive(true);
+        transform.position = resetPos.position;
+        transform.rotation = resetPos.rotation;
+    }
 }
